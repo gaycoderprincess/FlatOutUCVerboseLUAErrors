@@ -2,6 +2,8 @@
 
 Plugin to add verbose LUA errors into FlatOut: Ultimate Carnage, showing the error type, file and line number
 
+![Screenshot_2024-08-11_15-17-54](https://github.com/user-attachments/assets/b8955e13-7d0e-4bbd-a9c2-4a4fe9e8bbcf)
+
 ## Installation
 
 - Make sure you have the Steam GFWL version of the game, as this is the only version this plugin is compatible with. (exe size of 4242504 bytes)
