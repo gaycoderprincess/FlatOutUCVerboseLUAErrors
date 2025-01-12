@@ -2,6 +2,8 @@
 #include <fstream>
 #include "nya_commonhooklib.h"
 
+#include "fo2versioncheck.h"
+
 auto CopyString = (void*(__thiscall*)(void*, const char*, int))0x4023E0;
 void* __fastcall LogLUAErr(void* a1, void*, const char* a2, int a3) {
 	MessageBoxA(nullptr, a2, "Runtime error", 0x10);
@@ -17,11 +19,7 @@ void* LogLUALoadErr(void* a1, int a2, void* a3) {
 BOOL WINAPI DllMain(HINSTANCE, DWORD fdwReason, LPVOID) {
 	switch( fdwReason ) {
 		case DLL_PROCESS_ATTACH: {
-			if (NyaHookLib::GetEntryPoint() != 0x24CEF7) {
-				MessageBoxA(nullptr, "Unsupported game version! Make sure you're using the Steam GFWL version (.exe size of 4242504 bytes)", "nya?!~", MB_ICONERROR);
-				exit(0);
-				return TRUE;
-			}
+			DoFlatOutVersionCheck(FO2Version::FOUC_GFWL);
 
 			NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x5DE354, &LogLUAErr);
 			NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x5DE2AD, &LogLUALoadErr);
